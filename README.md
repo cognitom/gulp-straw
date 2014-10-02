@@ -1,31 +1,38 @@
 # Gulp Straw
 
-The command-line tool to manage your `gulpfile`.
+Gulp Task Manager: The command-line tool for managing your `gulpfile`.
 `gulpfile` is a task file for [gulp.js](http://gulpjs.com).
 
-## What Straw does:
+## Features
 
-- install `gulpfile` from GitHub
-- update `gulpfile` from GitHub
-- publish `gulpfile` to GitHub
-- solve the dependencies on `package.json`
+0. install `gulpfile` from GitHub
+0. update `gulpfile` from GitHub
+0. publish `gulpfile` to GitHub
+0. solve the dependencies on `package.json`
 
-## Install
+## Installation
 
-### Install `gulp-straw` globally
+Install `gulp-straw` from `npm` with:
 
 ```bash
 $ npm install -g gulp-straw
 ```
 
-### Set your GitHub account
+Straw requires you to authenticate with GitHub. Add the following entry to your ~/.netrc file:
 
+```
+machine api.github.com
+  login <username>
+  password <token>
+```
 
-## Usage
+You can create a new `token` here: https://github.com/settings/tokens/new
+
+## Getting Started
 
 ### Install gulpfiles
 
-#### Get gulpfiles from your repository
+Get gulpfiles from your repository:
 
 ```bash
 $ cd ./path/to/project/
@@ -33,23 +40,21 @@ $ straw install gulpfile
 $ straw install task/css
 ```
 
-#### Get gulpfiles from others
+Get gulpfiles from others:
 
 ```bash
 $ straw install cognitom/gulpfiles:gulpfile
 $ straw install cognitom/gulpfiles:task/css
 ```
 
-If the repository name is ommited `straw` guess that the name would be `gulpfile`. So these command can also be written like below.
+If the repository name is ommited `straw` guess that the name would be `gulpfiles`. So these command can also be written like below.
 
 ```bash
 $ straw install cognitom:gulpfile
 $ straw install cognitom:task/css
 ```
 
-You don't have
-
-#### Install all specified in `package.json`
+Install all specified in `package.json`:
 
 ```bash
 $ straw install
@@ -57,13 +62,13 @@ $ straw install
 
 ### Update gulpfiles
 
-#### Update all specified in `package.json`
+Update all specified in `package.json`:
 
 ```bash
 $ straw update
 ```
 
-#### Update gulpfiles
+Update gulpfiles:
 
 ```bash
 $ straw update task/css

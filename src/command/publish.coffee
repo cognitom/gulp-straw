@@ -5,4 +5,4 @@ Task    = require '../task'
 auth    = netrc 'api.github.com'
 
 module.exports = (cmd) ->
-  console.log "publish #{cmd}"
+  console.log "🚧  publish command is under development"

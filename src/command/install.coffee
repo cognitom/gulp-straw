@@ -1,31 +1,52 @@
-netrc     = require 'node-netrc'
-github    = require 'octonode'
-base64    = require 'base64'
-fs        = require 'fs'
-path      = require 'path'
-mkdirp    = require 'mkdirp'
-Task      = require '../task'
+Q          = require 'q'
+_          = require 'underscore'
+program    = require 'commander'
+Task       = require '../task'
+npmInstall = require '../npm-install'
 
-auth = netrc 'api.github.com'
-client = github.client
-  username: auth.login
-  password: auth.password
+to_install = []
+
+command = ->
+  args = program.rawArgs
+  ids = []
+  true while 'install' != args.shift()
   
-module.exports = (task, alias) ->
-  t = new Task task, alias
+  ids.push arg while /^\w/.test(arg = args.shift()) && arg
   
-  unless t.user
-    console.log 'User field needed'
-    return
-    
-  console.log "install: #{t.getQualifiedTaskName()} > #{t.dist}"
+  dir = program.dir || ''
   
-  ghrepo = client.repo "#{t.user}/#{t.repo}"
+  Task.loadConfig()
   
-  
-  
-  ghrepo.contents "#{t.taskfile}.#{t.ext}", (err, data) ->
-    dist = "#{t.dist}.#{t.ext}"
-    dir = path.dirname dist
-    mkdirp.sync dir unless fs.existsSync dir
-    fs.writeFile dist, base64.decode data.content
+  if ids.length
+    tasks =
+      new Task id, dir for id in ids
+    installTasks tasks
+    .then ->
+      Task.saveConfig()
+      console.log "installing required modules in taskfiles..."
+      npmInstall (_.uniq to_install), (err) ->
+        console.log "[OK] installation completed"
+  else
+    installTasks Task.instances
+    .then ->
+      console.log "installing required modules in taskfiles..."
+      npmInstall (_.uniq to_install), (err) ->
+        console.log "[OK] installation completed"
+
+installTask = (task) ->
+  deferred = Q.defer()
+  task.downloadFromGitHub (err) ->
+    if err
+      console.log "[NG] #{task.getQualifiedTaskName()} was not found"
+    else
+      console.log "[OK] #{task.getQualifiedTaskName()} > #{task.dist}"
+      task.addToConfig()
+      to_install.push d for d in task.dependencies
+    deferred.resolve()
+  deferred.promise
+
+installTasks = (tasks) ->
+  Q.all promises = 
+    installTask task for dist, task of tasks when task.ok
+      
+module.exports = command

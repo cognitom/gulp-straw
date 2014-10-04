@@ -2,7 +2,9 @@
   "name": "gulp-straw",
   "version": "0.0.2",
   "description": "Gulp Task Manager: The tool for managing your `gulpfile`",
-  "main": "./lib/main.js",
+  "bin": {
+    "straw": "./bin/straw.js"
+  },
   "preferGlobal": "true",
   "homepage": "https://github.com/cognitom/gulp-straw",
   "repository": {
@@ -18,9 +20,13 @@
   "dependencies": {
     "base64": "^2.1.0",
     "commander": "^2.3.0",
+    "detective": "^3.1.0",
     "mkdirp": "^0.5.0",
     "node-netrc": "0.0.1",
-    "octonode": "^0.6.7"
+    "octonode": "^0.6.7",
+    "q": "^1.0.1",
+    "spawn-cmd": "0.0.2",
+    "underscore": "^1.7.0"
   },
   "devDependencies": {
     "coffee-script": "^1.8.0",

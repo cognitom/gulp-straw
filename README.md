@@ -1,14 +1,15 @@
-# Gulp Straw
+# Gulp Straw (experimental)
 
-Gulp Task Manager: The command-line tool for managing your `gulpfile`.
-`gulpfile` is a task file for [gulp.js](http://gulpjs.com).
+Gulp Task Manager: The command-line tool for managing your `gulpfile`. `gulpfile` is a task file for [gulp.js](http://gulpjs.com).
 
-## Features
+Usually `gulpfile` grows bigger and bigger, so it's strongly recommended to split it and make it reusable. How? Use this `straw`!
+
+## Features (plan)
 
 0. install `gulpfile` from GitHub
 0. update `gulpfile` from GitHub
 0. publish `gulpfile` to GitHub
-0. solve the dependencies on `package.json`
+0. add the dependencies to `package.json`
 
 ## Installation
 
@@ -30,17 +31,38 @@ You can create a new `token` here: https://github.com/settings/tokens/new
 
 ## Getting Started
 
+At the first, prepare your [gulpfiles repository like this](https://github.com/cognitom/gulpfiles).
+
 ### Install gulpfiles
+
+Go to your project directory.
+
+```bash
+$ cd ./path/to/project/
+```
 
 Get gulpfiles from your repository:
 
 ```bash
-$ cd ./path/to/project/
 $ straw install gulpfile
 $ straw install task/css
 ```
 
-Get gulpfiles from others:
+Or it's ok to set multiple tasks.
+
+```bash
+$ straw install gulpfile task/css
+```
+
+#### Custom directory
+
+If you have a task `coffee` but you want to install it under the `task` directory, use `--dir` option.
+
+```bash
+$ straw install coffee --dir task/
+```
+
+#### Get gulpfiles from others
 
 ```bash
 $ straw install cognitom/gulpfiles:gulpfile
@@ -53,6 +75,8 @@ If the repository name is ommited `straw` guess that the name would be `gulpfile
 $ straw install cognitom:gulpfile
 $ straw install cognitom:task/css
 ```
+
+#### Install all
 
 Install all specified in `package.json`:
 
@@ -87,8 +111,25 @@ $ straw publish task/css
 ```json
 {
   "straw": {
-    "gulpfile": "cognitom:gulpfile.coffee",
-    "task/css": "cognitom:task/css.coffee"
+    "gulpfile": "cognitom:gulpfile",
+    "task/css": "cognitom:task/css"
   }
 }
 ```
+
+## Todos:
+
+- [x] introduce [commander.js](http://visionmedia.github.io/commander.js/)
+- [x] get file from GitHub repo by [octonode](http://visionmedia.github.io/commander.js/)
+- [x] save config into package.json
+- [x] auto-complete extension: `.js` or `.coffee` or ...
+- [x] install multi tasks
+- [x] install all from package.json
+- [x] add devDependency automatically
+- [ ] modify relative paths in gulpfiles
+- [ ] update task
+- [ ] publish task
+- [ ] uninstall task
+- [ ] support private repo
+- [ ] error handling
+- [ ] test test test

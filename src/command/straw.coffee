@@ -1,22 +1,23 @@
 program = require 'commander'
-meta    = require '../package.json'
+meta    = require '../../package.json'
 
 program
 .version meta.version
+.option '-D, --dir <path>', 'change the installation directory (for only `install`)'
 
 program
-.command 'install <task> [alias]'
+.command 'install [task]'
 .description 'install gulpfile <task> from GitHub'
-.action require './command/install'
+.action require './install'
     
 program
-.command 'update <task>'
+.command 'update [task]'
 .description 'update gulpfile <task> from GitHub'
-.action require './command/update'
+.action require './update'
 
 program
 .command 'publish <task>'
 .description 'publish gulpfile <task> to GitHub'
-.action require './command/publish'
+.action require './publish'
   
 program.parse process.argv

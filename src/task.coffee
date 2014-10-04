@@ -7,9 +7,13 @@ mkdirp    = require 'mkdirp'
 detective = require './detective'
 auth      = netrc 'api.github.com'
 
-client = github.client
-  username: auth.login
-  password: auth.password
+client =
+  if auth && auth.login
+    github.client
+      username: auth.login
+      password: auth.password
+  else
+    github.client() # public access
 
 config = {}
 config_path = "#{process.cwd()}/package.json" # TODO: support .npmrc

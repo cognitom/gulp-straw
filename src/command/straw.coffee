@@ -6,6 +6,11 @@ program
 .option '-D, --dir <path>', 'change the installation directory (for only `install`)'
 
 program
+.command 'setup'
+.description 'setup your account of GitHub'
+.action require './setup'
+
+program
 .command 'install [task]'
 .description 'install gulpfile <task> from GitHub'
 .action require './install'

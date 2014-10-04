@@ -145,7 +145,7 @@ $ straw publish task/css
 
 ```json
 {
-  "straw": {
+  "gulpfiles": {
     "gulpfile": "cognitom:gulpfile",
     "task/css": "cognitom:task/css"
   }

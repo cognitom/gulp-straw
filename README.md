@@ -6,6 +6,15 @@ Gulp Task Manager: The command-line tool for managing your `gulpfile`. `gulpfile
 
 Usually `gulpfile` grows bigger and bigger, so it's strongly recommended to split it and make it reusable. How? Use this `straw`!
 
+```bash
+$ straw install gulpfile
+[OK] cognitom:gulpfile > gulpfile
+installing required modules in taskfiles...
+[OK] installation completed
+$ ls
+gulpfile.js	node_modules	package.json
+```
+
 ## Features
 
 - retrieve `gulpfile` from your (or other's) GitHub repo
@@ -24,15 +33,36 @@ Install `gulp-straw` from `npm` with:
 $ npm install -g gulp-straw
 ```
 
-Straw requires you to authenticate with GitHub. Add the following entry to your ~/.netrc file:
+Straw requires you to authenticate with GitHub. Let's `setup` at first.
+
+```bash
+$ straw setup
+```
+
+Then, follow the instruction.
+
+```
+Straw requires you to auth with GitHub.
+You can create a new token here:
+🔖  https://github.com/settings/tokens/new
+------------------------------------------------------------
+👤  GitHub account:  cognitom
+💬  Open the browser to get your token? (YES/no)
+🔑  Paste here:  123456789abcdef123456789abcdef
+------------------------------------------------------------
+Successfully access to your GitHub account!
+- Name: Tsutomu Kawamura
+- Mail: tsutomu@librize.com
+The account 'cognitom' was saved into ~/.netrc.
+```
+
+Or add the following entry to your ~/.netrc file manually
 
 ```
 machine api.github.com
   login <username>
   password <token>
 ```
-
-You can create a new `token` here: https://github.com/settings/tokens/new
 
 ## Getting Started
 
@@ -131,6 +161,7 @@ $ straw publish task/css
 - [x] install multi tasks
 - [x] install all from package.json
 - [x] add devDependency automatically
+- [x] easy flow to login to GitHub
 - [ ] modify relative paths in gulpfiles
 - [ ] update task
 - [ ] publish task

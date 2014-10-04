@@ -162,10 +162,11 @@ $ straw publish task/css
 - [x] install all from package.json
 - [x] add devDependency automatically
 - [x] easy flow to login to GitHub
+- [x] copy gulpvars in package.json
 - [ ] modify relative paths in gulpfiles
 - [ ] update task
 - [ ] publish task
 - [ ] uninstall task
-- [ ] support private repo
+- [x] support private repo
 - [ ] error handling
 - [ ] test test test

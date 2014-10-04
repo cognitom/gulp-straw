@@ -44,11 +44,11 @@ Then, follow the instruction.
 ```
 Straw requires you to auth with GitHub.
 You can create a new token here:
-🔖  https://github.com/settings/tokens/new
+- https://github.com/settings/tokens/new
 ------------------------------------------------------------
-👤  GitHub account:  cognitom
-💬  Open the browser to get your token? (YES/no)
-🔑  Paste here:  123456789abcdef123456789abcdef
+- GitHub account:  cognitom
+- Open the browser to get your token? (YES/no)
+- Paste here:  123456789abcdef123456789abcdef
 ------------------------------------------------------------
 Successfully access to your GitHub account!
 - Name: Tsutomu Kawamura

@@ -4,12 +4,15 @@ Gulp Task Manager: The command-line tool for managing your `gulpfile`. `gulpfile
 
 Usually `gulpfile` grows bigger and bigger, so it's strongly recommended to split it and make it reusable. How? Use this `straw`!
 
-## Features (plan)
+## Features
 
-0. install `gulpfile` from GitHub
-0. update `gulpfile` from GitHub
-0. publish `gulpfile` to GitHub
-0. add the dependencies to `package.json`
+- retrieve `gulpfile` from your (or other's) GitHub repo
+- install dependencies automatically
+
+and now implementing the features below.
+
+- update `gulpfile` from GitHub
+- publish `gulpfile` to GitHub
 
 ## Installation
 

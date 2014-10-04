@@ -1,3 +1,5 @@
+![logo](logo.png)
+
 # Gulp Straw (experimental)
 
 Gulp Task Manager: The command-line tool for managing your `gulpfile`. `gulpfile` is a task file for [gulp.js](http://gulpjs.com).

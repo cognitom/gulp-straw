@@ -19,19 +19,23 @@ command = ->
   
   if ids.length
     tasks =
-      new Task id, dir for id in ids
+      for id in ids
+        task = new Task id, dir
+        task
     installTasks tasks
     .then ->
       Task.saveConfig()
-      console.log "installing required modules in taskfiles..."
-      npmInstall (_.uniq to_install), (err) ->
-        console.log "[OK] installation completed"
+      if to_install.length
+        console.log "installing required modules in taskfiles..."
+        npmInstall (_.uniq to_install), (err) ->
+          console.log "[OK] installation completed"
   else
     installTasks Task.instances
     .then ->
-      console.log "installing required modules in taskfiles..."
-      npmInstall (_.uniq to_install), (err) ->
-        console.log "[OK] installation completed"
+      if to_install.length
+        console.log "installing required modules in taskfiles..."
+        npmInstall (_.uniq to_install), (err) ->
+          console.log "[OK] installation completed"
 
 installTask = (task) ->
   deferred = Q.defer()
@@ -46,7 +50,12 @@ installTask = (task) ->
   deferred.promise
 
 installTasks = (tasks) ->
+  tasks = tasks.filter (task) ->
+    unless task.ok
+      console.log "[NG] <user>/<repo>:#{task.taskfile} needs user/repo field"
+    task.ok
+  
   Q.all promises = 
-    installTask task for dist, task of tasks when task.ok
+    installTask task for dist, task of tasks
       
 module.exports = command

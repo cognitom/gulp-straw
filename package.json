@@ -5,6 +5,7 @@
   "bin": {
     "straw": "./bin/straw.js"
   },
+  "main": "./lib/main.js",
   "preferGlobal": "true",
   "homepage": "https://github.com/cognitom/gulp-straw",
   "repository": {
@@ -21,6 +22,7 @@
     "base64": "^2.1.0",
     "commander": "^2.3.0",
     "detective": "^3.1.0",
+    "merge": "^1.2.0",
     "mkdirp": "^0.5.0",
     "netrc": "^0.1.3",
     "node-netrc": "0.0.1",

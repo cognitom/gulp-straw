@@ -10,13 +10,13 @@ command = ->
   args = program.rawArgs
   ids = []
   true while 'install' != args.shift()
-  
+
   ids.push arg while /^\w/.test(arg = args.shift()) && arg
-  
+
   dir = program.dir || ''
-  
+
   Task.loadConfig()
-  
+
   if ids.length
     tasks =
       for id in ids
@@ -50,12 +50,10 @@ installTask = (task) ->
   deferred.promise
 
 installTasks = (tasks) ->
-  tasks = tasks.filter (task) ->
-    unless task.ok
-      console.log "[NG] <user>/<repo>:#{task.taskfile} needs user/repo field"
-    task.ok
-  
-  Q.all promises = 
-    installTask task for dist, task of tasks
-      
+  for dist, task of tasks when !task.ok
+    console.log "[NG] <user>/<repo>:#{task.taskfile} needs user/repo field"
+
+  Q.all promises =
+    installTask task for dist, task of tasks when task.ok
+
 module.exports = command

@@ -6,6 +6,7 @@ module.exports = (source, ext) ->
     when '.coffee' then coffee.compile source
     when '.js'     then source
     else '' # not supported yet
-        
-  detective compiled
-  .filter (id) -> /^[^\.]/.test id # remove local modules
+
+  dependencies = detective compiled
+  dependencies.push 'coffee-script' if ext == '.coffee'
+  dependencies.filter (id) -> /^[^\.]/.test id # remove local modules

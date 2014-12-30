@@ -1,6 +1,6 @@
 {
   "name": "gulp-straw",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "[EXPERIMENTAL] Gulp Task Manager: The tool for managing your `gulpfile`",
   "bin": {
     "straw": "./bin/straw.js"
